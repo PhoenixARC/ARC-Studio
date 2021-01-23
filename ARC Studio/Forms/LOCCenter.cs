@@ -18,13 +18,15 @@ namespace ARC_Studio.Forms
         public LOCCenter()
         {
             InitializeComponent();
+            Directory.CreateDirectory(cacheDir);
+            crosscheckfiles();
             reload(ps3Loaded);
         }
 
         string[] mods;
         string loadDirectory = ARC_Studio.Form1.url + "/ARC/loc/ps3List.txt";
         string appData = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ARC Studio/";
-        string cacheDir;
+        string cacheDir = Environment.CurrentDirectory + "\\cache\\LOC\\";
 
         bool ps3Loaded = true;
         bool xb360Loaded = true;
@@ -159,6 +161,37 @@ namespace ARC_Studio.Forms
         }
 
 
+        public void crosscheckfiles()
+        {
+            try
+            {
+                using (WebClient client = new WebClient())
+                {
+                    try
+                    {
+                        List<string> deleteList = new List<string>();
+                        foreach (string file in Directory.GetFiles(cacheDir))
+                            if (!client.DownloadString(loadDirectory).Contains(Path.GetFileNameWithoutExtension(file)) && Path.GetExtension(file) == ".desc")
+                            {
+                                deleteList.Add(file);
+                            }
+                        foreach (string file in deleteList)
+                        {
+                            File.Delete(file);
+                            File.Delete(Path.GetFileNameWithoutExtension(file) + ".png");
+                        }
+
+                    }
+                    catch (Exception connect)
+                    {
+                        MessageBox.Show(connect.ToString());
+                    }
+                }
+            }
+            catch { }
+        }
+
+
         private void radioButtonPS3_CheckedChanged(object sender, EventArgs e)
         {
 
@@ -286,6 +319,11 @@ namespace ARC_Studio.Forms
         private void buttonSubmit_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("mailto:felix.millerarc@gmail.com?subject=LOC%20Submission&body=Name%3A%0ACreator%3A");
+        }
+
+        private void LOCCenter_Load(object sender, EventArgs e)
+        {
+            Directory.CreateDirectory(cacheDir);
         }
     }
 }

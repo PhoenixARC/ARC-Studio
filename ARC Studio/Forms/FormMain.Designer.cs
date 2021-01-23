@@ -48,7 +48,6 @@
             this.openNBTCenterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.metroTabControl1 = new MetroFramework.Controls.MetroTabControl();
             this.metroTabPage1 = new MetroFramework.Controls.MetroTabPage();
-            this.pictureBox1 = new ARC_Studio.PictureBoxWithInterpolationMode();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
@@ -56,14 +55,16 @@
             this.DEVELOPERLABEL = new System.Windows.Forms.Label();
             this.VersionLabel = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.reportABugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pictureBox1 = new ARC_Studio.PictureBoxWithInterpolationMode();
             this.TreeMenu.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.metroTabControl1.SuspendLayout();
             this.metroTabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // EntryList
@@ -107,8 +108,8 @@
             this.menuStrip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.helpToolStripMenuItem,
-            this.storeToolStripMenuItem});
+            this.storeToolStripMenuItem,
+            this.helpToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(20, 60);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Size = new System.Drawing.Size(778, 24);
@@ -131,7 +132,7 @@
             // 
             this.openToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("openToolStripMenuItem.Image")));
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
@@ -139,7 +140,7 @@
             // 
             this.extractToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("extractToolStripMenuItem1.Image")));
             this.extractToolStripMenuItem1.Name = "extractToolStripMenuItem1";
-            this.extractToolStripMenuItem1.Size = new System.Drawing.Size(114, 22);
+            this.extractToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.extractToolStripMenuItem1.Text = "Extract";
             this.extractToolStripMenuItem1.Click += new System.EventHandler(this.extractToolStripMenuItem1_Click);
             // 
@@ -148,7 +149,7 @@
             this.saveToolStripMenuItem1.Enabled = false;
             this.saveToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("saveToolStripMenuItem1.Image")));
             this.saveToolStripMenuItem1.Name = "saveToolStripMenuItem1";
-            this.saveToolStripMenuItem1.Size = new System.Drawing.Size(114, 22);
+            this.saveToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.saveToolStripMenuItem1.Text = "Save";
             this.saveToolStripMenuItem1.Click += new System.EventHandler(this.saveToolStripMenuItem1_Click);
             // 
@@ -157,13 +158,14 @@
             this.saveToolStripMenuItem.Enabled = false;
             this.saveToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("saveToolStripMenuItem.Image")));
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveToolStripMenuItem.Text = "Save As";
             // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.programInfoToolStripMenuItem});
+            this.programInfoToolStripMenuItem,
+            this.reportABugToolStripMenuItem});
             this.helpToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
@@ -173,7 +175,7 @@
             // 
             this.programInfoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("programInfoToolStripMenuItem.Image")));
             this.programInfoToolStripMenuItem.Name = "programInfoToolStripMenuItem";
-            this.programInfoToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.programInfoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.programInfoToolStripMenuItem.Text = "Program Info";
             this.programInfoToolStripMenuItem.Click += new System.EventHandler(this.programInfoToolStripMenuItem_Click);
             // 
@@ -190,22 +192,25 @@
             // 
             // openToolStripMenuItem1
             // 
+            this.openToolStripMenuItem1.Image = global::ARC_Studio.Properties.Resources.fuiCenterHeader;
             this.openToolStripMenuItem1.Name = "openToolStripMenuItem1";
-            this.openToolStripMenuItem1.Size = new System.Drawing.Size(167, 22);
+            this.openToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.openToolStripMenuItem1.Text = "Open FUI Center";
             this.openToolStripMenuItem1.Click += new System.EventHandler(this.openToolStripMenuItem1_Click);
             // 
             // openLOCCenterToolStripMenuItem
             // 
+            this.openLOCCenterToolStripMenuItem.Image = global::ARC_Studio.Properties.Resources.locCenterHeader;
             this.openLOCCenterToolStripMenuItem.Name = "openLOCCenterToolStripMenuItem";
-            this.openLOCCenterToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.openLOCCenterToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.openLOCCenterToolStripMenuItem.Text = "Open LOC Center";
             this.openLOCCenterToolStripMenuItem.Click += new System.EventHandler(this.openLOCCenterToolStripMenuItem_Click);
             // 
             // openNBTCenterToolStripMenuItem
             // 
+            this.openNBTCenterToolStripMenuItem.Image = global::ARC_Studio.Properties.Resources.nbtCenterHeader;
             this.openNBTCenterToolStripMenuItem.Name = "openNBTCenterToolStripMenuItem";
-            this.openNBTCenterToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.openNBTCenterToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.openNBTCenterToolStripMenuItem.Text = "Open NBT Center";
             this.openNBTCenterToolStripMenuItem.Click += new System.EventHandler(this.openNBTCenterToolStripMenuItem_Click);
             // 
@@ -234,17 +239,6 @@
             this.metroTabPage1.TabIndex = 0;
             this.metroTabPage1.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.metroTabPage1.VerticalScrollbarBarColor = true;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pictureBox1.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Default;
-            this.pictureBox1.Location = new System.Drawing.Point(200, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(570, 215);
-            this.pictureBox1.TabIndex = 4;
-            this.pictureBox1.TabStop = false;
             // 
             // tabControl1
             // 
@@ -325,6 +319,25 @@
             this.pictureBox2.TabIndex = 8;
             this.pictureBox2.TabStop = false;
             // 
+            // reportABugToolStripMenuItem
+            // 
+            this.reportABugToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("reportABugToolStripMenuItem.Image")));
+            this.reportABugToolStripMenuItem.Name = "reportABugToolStripMenuItem";
+            this.reportABugToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.reportABugToolStripMenuItem.Text = "Report a bug";
+            this.reportABugToolStripMenuItem.Click += new System.EventHandler(this.reportABugToolStripMenuItem_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pictureBox1.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Default;
+            this.pictureBox1.Location = new System.Drawing.Point(200, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(570, 215);
+            this.pictureBox1.TabIndex = 4;
+            this.pictureBox1.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -350,10 +363,10 @@
             this.menuStrip.PerformLayout();
             this.metroTabControl1.ResumeLayout(false);
             this.metroTabPage1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -387,6 +400,7 @@
         private PictureBoxWithInterpolationMode pictureBox1;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.ToolStripMenuItem reportABugToolStripMenuItem;
     }
 }
 

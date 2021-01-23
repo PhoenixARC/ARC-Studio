@@ -237,6 +237,7 @@
             this.Style = MetroFramework.MetroColorStyle.Silver;
             this.Text = "LOC Center";
             this.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.Load += new System.EventHandler(this.LOCCenter_Load);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

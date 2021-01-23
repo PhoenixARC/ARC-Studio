@@ -18,6 +18,7 @@ using System.Windows.Forms;
 using MetroFramework.Forms;
 using ARC_Studio.Workers;
 using System.Drawing.Drawing2D;
+using System.Net.Mail;
 
 namespace ARC_Studio
 {
@@ -46,7 +47,7 @@ namespace ARC_Studio
         public string arcfile = "";
         public string appdata = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\ARC_Data\\Media\\";
         public static string url = "http://pckstudio.tk";
-            string version = "1.3";
+        string version = "1.5";
 
         string saveLocation;//Save location for pck file
         int fileCount = 0;//variable for number of minefiles
@@ -175,7 +176,7 @@ namespace ARC_Studio
 
                     if (MessageBox.Show("Update Avaliable\nDownload?", "Alert!", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        System.Diagnostics.Process.Start(url + "/ArcCenter/update.zip");
+                        System.Diagnostics.Process.Start(Environment.CurrentDirectory + "\\ARCUpdater.exe");
                     }
                 }
                 else
@@ -501,99 +502,113 @@ namespace ARC_Studio
 
         private void EntryList_AfterSelect(object sender, TreeViewEventArgs e)
         {
-
-            if (EntryList.SelectedNode.Text.EndsWith(".png"))
+            try
             {
-                //MessageBox.Show(EntryList.SelectedNode.Tag.ToString());
-                pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-                pictureBox1.InterpolationMode = InterpolationMode.NearestNeighbor;
-                MemoryStream png = new MemoryStream(File.ReadAllBytes(EntryList.SelectedNode.Tag.ToString())); //Gets image data from minefile data
-                Image skinPicture = Image.FromStream(png); //Constructs image data into image
-                pictureBox1.Image = skinPicture; //Sets image preview to image
+                if (EntryList.SelectedNode.Text.EndsWith(".png"))
+                {
+                    //MessageBox.Show(EntryList.SelectedNode.Tag.ToString());
+                    pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+                    pictureBox1.InterpolationMode = InterpolationMode.NearestNeighbor;
+                    MemoryStream png = new MemoryStream(File.ReadAllBytes(EntryList.SelectedNode.Tag.ToString())); //Gets image data from minefile data
+                    Image skinPicture = Image.FromStream(png); //Constructs image data into image
+                    pictureBox1.Image = skinPicture; //Sets image preview to image
 
 
-                if (skinPicture.Size.Height == skinPicture.Size.Width / 2)
-                {
-                    return;
-                }
-                else if (skinPicture.Size.Height == skinPicture.Size.Width)
-                {
-                    return;
-                }
-                else
-                {
-                    //Sets images to appear at largest relative size to program window size
-                    Size maxDisplay = new Size(tabPage1.Size.Width / 2 - 5, tabPage1.Size.Height / 2 - 5);
-                    if (skinPicture.Size.Width > maxDisplay.Width)
+                    if (skinPicture.Size.Height == skinPicture.Size.Width / 2)
                     {
-                        //calculate aspect ratio
-                        float aspect = skinPicture.Width / (float)skinPicture.Height;
-                        int newWidth, newHeight;
-
-                        //calculate new dimensions based on aspect ratio
-                        newWidth = (int)(maxDisplay.Height * aspect);
-                        newHeight = (int)(newWidth / aspect);
-
-                        //if one of the two dimensions exceed the box dimensions
-                        if (newWidth > skinPicture.Width || newHeight > skinPicture.Height)
-                        {
-                            //depending on which of the two exceeds the box dimensions set it as the box dimension and calculate the other one based on the aspect ratio
-                            if (newWidth > newHeight)
-                            {
-                                newWidth = maxDisplay.Width;
-                                newHeight = (int)(newWidth / aspect);
-                            }
-                            else
-                            {
-                                newHeight = maxDisplay.Height;
-                                newWidth = (int)(newHeight * aspect);
-                            }
-                        }
-                        pictureBox1.Size = new Size(newWidth, newHeight);
+                        return;
                     }
-                    else if (skinPicture.Size.Height > maxDisplay.Height)
+                    else if (skinPicture.Size.Height == skinPicture.Size.Width)
                     {
-                        //calculate aspect ratio
-                        float aspect = skinPicture.Width / (float)skinPicture.Height;
-                        int newWidth, newHeight;
-
-                        //calculate new dimensions based on aspect ratio
-                        newWidth = (int)(maxDisplay.Width * aspect);
-                        newHeight = (int)(newWidth / aspect);
-
-                        //if one of the two dimensions exceed the box dimensions
-                        if (newWidth > skinPicture.Width || newHeight > skinPicture.Height)
-                        {
-                            //depending on which of the two exceeds the box dimensions set it as the box dimension and calculate the other one based on the aspect ratio
-                            if (newWidth > newHeight)
-                            {
-                                newWidth = maxDisplay.Width;
-                                newHeight = (int)(newWidth / aspect);
-                            }
-                            else
-                            {
-                                newHeight = maxDisplay.Height;
-                                newWidth = (int)(newHeight * aspect);
-                            }
-                        }
-                        pictureBox1.Size = new Size(newWidth, newHeight);
+                        return;
                     }
                     else
                     {
-                        pictureBox1.Size = new Size(skinPicture.Size.Width, skinPicture.Size.Height);
-                    }
-                    return;
-                }
-                richTextBox1.Text = "";
-            }
-            else if (EntryList.SelectedNode.Text.EndsWith(".txt"))
-            {
-                richTextBox1.Text = File.ReadAllText(EntryList.SelectedNode.Tag.ToString());
-            }
-            else
-            {
-                richTextBox1.Text = "";
+                        //Sets images to appear at largest relative size to program window size
+                        Size maxDisplay = new Size(tabPage1.Size.Width / 2 - 5, tabPage1.Size.Height / 2 - 5);
+                        if (skinPicture.Size.Width > maxDisplay.Width)
+                        {
+                            //calculate aspect ratio
+                            float aspect = skinPicture.Width / (float)skinPicture.Height;
+                            int newWidth, newHeight;
 
+                            //calculate new dimensions based on aspect ratio
+                            newWidth = (int)(maxDisplay.Height * aspect);
+                            newHeight = (int)(newWidth / aspect);
+
+                            //if one of the two dimensions exceed the box dimensions
+                            if (newWidth > skinPicture.Width || newHeight > skinPicture.Height)
+                            {
+                                //depending on which of the two exceeds the box dimensions set it as the box dimension and calculate the other one based on the aspect ratio
+                                if (newWidth > newHeight)
+                                {
+                                    newWidth = maxDisplay.Width;
+                                    newHeight = (int)(newWidth / aspect);
+                                }
+                                else
+                                {
+                                    newHeight = maxDisplay.Height;
+                                    newWidth = (int)(newHeight * aspect);
+                                }
+                            }
+                            pictureBox1.Size = new Size(newWidth, newHeight);
+                        }
+                        else if (skinPicture.Size.Height > maxDisplay.Height)
+                        {
+                            //calculate aspect ratio
+                            float aspect = skinPicture.Width / (float)skinPicture.Height;
+                            int newWidth, newHeight;
+
+                            //calculate new dimensions based on aspect ratio
+                            newWidth = (int)(maxDisplay.Width * aspect);
+                            newHeight = (int)(newWidth / aspect);
+
+                            //if one of the two dimensions exceed the box dimensions
+                            if (newWidth > skinPicture.Width || newHeight > skinPicture.Height)
+                            {
+                                //depending on which of the two exceeds the box dimensions set it as the box dimension and calculate the other one based on the aspect ratio
+                                if (newWidth > newHeight)
+                                {
+                                    newWidth = maxDisplay.Width;
+                                    newHeight = (int)(newWidth / aspect);
+                                }
+                                else
+                                {
+                                    newHeight = maxDisplay.Height;
+                                    newWidth = (int)(newHeight * aspect);
+                                }
+                            }
+                            pictureBox1.Size = new Size(newWidth, newHeight);
+                        }
+                        else
+                        {
+                            pictureBox1.Size = new Size(skinPicture.Size.Width, skinPicture.Size.Height);
+                        }
+                        return;
+                    }
+                    richTextBox1.Text = "";
+                }
+                else if (EntryList.SelectedNode.Text.EndsWith(".txt"))
+                {
+                    richTextBox1.Text = File.ReadAllText(EntryList.SelectedNode.Tag.ToString());
+                }
+                else
+                {
+                    richTextBox1.Text = "";
+
+                }
+            }
+            catch(Exception exep)
+            {
+                string errormsg = DateTime.Today.Day + "-" + DateTime.Today.Month + "-" + DateTime.Today.Year + "::" + DateTime.Now.Hour + "_" + DateTime.Now.Minute + " -- " + exep.Message.ToString() + "\n\n" + exep.StackTrace.ToString();
+                System.IO.Directory.CreateDirectory(Environment.CurrentDirectory + "\\LOGS\\");
+                System.IO.File.AppendAllText(Environment.CurrentDirectory + "\\LOGS\\logFile-" + DateTime.Today.Day + "-" + DateTime.Today.Month + "-" + DateTime.Today.Year + ".log", errormsg + "\n\n===============NEWLOG===============n");
+
+
+                if (MessageBox.Show("Update Avaliable\nDownload?", "Error!", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    System.Diagnostics.Process.Start(Environment.CurrentDirectory + "\\ARCUpdater.exe");
+                }
             }
         }
         #endregion
@@ -647,10 +662,28 @@ namespace ARC_Studio
                     fui.Show();
                 }
 
+                //Checks to see if selected minefile is a binka file
+                if (Path.GetExtension(EntryList.SelectedNode.Tag.ToString()) == ".binka")
+                {
+                    File.WriteAllText(Environment.CurrentDirectory + "\\BinkMan\\files.txt", EntryList.SelectedNode.Tag.ToString());
+                    SaveFileDialog sfd = new SaveFileDialog();
+                    sfd.Filter = "Waveform Audio | *.wav";
+                    if(sfd.ShowDialog() == DialogResult.OK)
+                    {
+                        System.Diagnostics.Process binkman = new System.Diagnostics.Process();
+                        binkman.StartInfo.FileName = Environment.CurrentDirectory + "\\BinkMan\\BinkMan.exe";
+                        binkman.StartInfo.WorkingDirectory = Environment.CurrentDirectory + "\\BinkMan";
+                        binkman.Start();
+                        binkman.WaitForExit();
+                        File.Copy(EntryList.SelectedNode.Tag.ToString().Replace(".binka", ".wav"), sfd.FileName, true);
+                        File.Delete(EntryList.SelectedNode.Tag.ToString().Replace(".binka", ".wav"));
+                    }
+                    else
+                    {
 
-
-
-
+                    }
+                    //MessageBox.Show(".binka Editor Coming Soon!");
+                }
 
                 //Checks to see if selected minefile is a col file
                 if (Path.GetExtension(EntryList.SelectedNode.Tag.ToString()) == "")
@@ -662,14 +695,6 @@ namespace ARC_Studio
                     //MessageBox.Show(".NBT Editor Coming Soon!");
                 }
 
-                //Checks to see if selected minefile is a binka file
-                System.Threading.ThreadStart starter;
-
-                System.Threading.Thread binkam;
-                if (Path.GetExtension(EntryList.SelectedNode.Tag.ToString()) == ".binka")
-                {
-                    MessageBox.Show(".binka Editor Coming Soon!");
-                }
 
             }
         }
@@ -719,6 +744,11 @@ namespace ARC_Studio
                             sfd.Filter = "Color file | *.col";
                         }
                         break;
+                    case (".binka"):
+                        {
+                            sfd.Filter = "Waveform Audio | *.wav";
+                        }
+                        break;
                     case (""):
                         {
                             sfd.Filter = "NBT Data | *.nbt";
@@ -728,7 +758,19 @@ namespace ARC_Studio
                 sfd.FileName = EntryList.SelectedNode.Text;
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
-                    File.Copy(EntryList.SelectedNode.Tag.ToString(), sfd.FileName);
+                    if (sfd.Filter == "Waveform Audio | *.wav")
+                    {
+                        System.Diagnostics.Process binkman = new System.Diagnostics.Process();
+                        binkman.StartInfo.FileName = Environment.CurrentDirectory + "\\BinkMan\\BinkMan.exe";
+                        binkman.StartInfo.WorkingDirectory = Environment.CurrentDirectory + "\\BinkMan";
+                        binkman.Start();
+                        binkman.WaitForExit();
+                        File.Copy(EntryList.SelectedNode.Tag.ToString().Replace(".binka", ".wav"), sfd.FileName, true);
+                        File.Delete(EntryList.SelectedNode.Tag.ToString().Replace(".binka", ".wav"));
+                    }
+                    else
+                        File.Copy(EntryList.SelectedNode.Tag.ToString(), sfd.FileName, true);
+
                 }
             }
 
@@ -773,6 +815,11 @@ namespace ARC_Studio
                             sfd.Filter = "Color file | *.col";
                         }
                         break;
+                    case (".binka"):
+                        {
+                            sfd.Filter = "Waveform Audio | *.wav";
+                        }
+                        break;
                     case (""):
                         {
                             sfd.Filter = "NBT Data | *.nbt";
@@ -782,7 +829,18 @@ namespace ARC_Studio
                 sfd.FileName = EntryList.SelectedNode.Text;
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
-                    File.Copy(sfd.FileName, EntryList.SelectedNode.Tag.ToString(), true);
+                    if (sfd.Filter == "Waveform Audio | *.wav")
+                    {
+                        System.Diagnostics.Process binkman = new System.Diagnostics.Process();
+                        binkman.StartInfo.FileName = Environment.CurrentDirectory + "\\BinkMan\\BinkMan.exe";
+                        binkman.StartInfo.WorkingDirectory = Environment.CurrentDirectory + "\\BinkMan";
+                        binkman.Start();
+                        binkman.WaitForExit();
+                        File.Copy(sfd.FileName, EntryList.SelectedNode.Tag.ToString().Replace(".wav", ".binka"), true);
+                        File.Delete(sfd.FileName);
+                    }
+                    else
+                        File.Copy(sfd.FileName, EntryList.SelectedNode.Tag.ToString(), true);
                 }
             }
         }
@@ -796,5 +854,17 @@ namespace ARC_Studio
         }
 
         #endregion
+
+        #region send bug report
+
+        private void reportABugToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.StackTrace t = new System.Diagnostics.StackTrace();
+            //MessageBox.Show("Please be aware that this will contain the stack trace at the bottom, simply type your bug description above that");
+            System.Diagnostics.Process.Start("mailto:felix.millerarc@gmail.com?subject=ARC%20Studio%20Bug%20report&body=description:%0A%0A%0A%0A%0A%0A%0A%0A%0A%0ASTACK%20TRACE:" + t.ToString().Replace(" ","%20").Replace("\n","%0A").Replace("\r\n","%0A"));
+        }
+
+        #endregion
+
     }
 }

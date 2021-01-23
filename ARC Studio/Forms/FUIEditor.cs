@@ -34,6 +34,7 @@ namespace ARC_Studio.Forms
             icons.Images.Add(ARC_Studio.Properties.Resources.FUI_ICON);
             icons.Images.Add(ARC_Studio.Properties.Resources.ZUnknown);
 
+            Directory.CreateDirectory(appData + "/FUI_Data/");
             EntryList.ImageList = icons; //sets file icon image list
             Console.WriteLine("LoadFUI");
             openfui = file;
@@ -109,7 +110,7 @@ namespace ARC_Studio.Forms
                 pictureBox1.Image = skinPicture; //Sets image preview to image
 
 
-                if (skinPicture.Size.Height == skinPicture.Size.Width / 2)
+                if (skinPicture.Size.Height == metroTabPage1.Size.Width / 2)
                 {
                     return;
                 }
@@ -146,7 +147,7 @@ namespace ARC_Studio.Forms
                                 newWidth = (int)(newHeight * aspect);
                             }
                         }
-                        pictureBox1.Size = new Size(newWidth, newHeight);
+                        //pictureBox1.Size = new Size(newWidth, newHeight);
                     }
                     else if (skinPicture.Size.Height > maxDisplay.Height)
                     {
@@ -173,11 +174,11 @@ namespace ARC_Studio.Forms
                                 newWidth = (int)(newHeight * aspect);
                             }
                         }
-                        pictureBox1.Size = new Size(newWidth, newHeight);
+                        //pictureBox1.Size = new Size(newWidth, newHeight);
                     }
                     else
                     {
-                        pictureBox1.Size = new Size(skinPicture.Size.Width, skinPicture.Size.Height);
+                        //pictureBox1.Size = new Size(skinPicture.Size.Width, skinPicture.Size.Height);
                     }
                     return;
                 }

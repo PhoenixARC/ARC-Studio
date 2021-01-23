@@ -236,6 +236,7 @@
             this.Style = MetroFramework.MetroColorStyle.Silver;
             this.Text = "FUI Center";
             this.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.Load += new System.EventHandler(this.FUICenter_Load);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
