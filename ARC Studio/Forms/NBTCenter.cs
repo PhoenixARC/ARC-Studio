@@ -24,8 +24,8 @@ namespace ARC_Studio.Forms
         }
 
         string[] mods;
-        string loadDirectory = ARC_Studio.Form1.url + "/ARC/nbt/mainList.txt";
-        string appData = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ARC Studio/";
+        string loadDirectory = ARC_Studio.Form1.url + "/nbt/mainList.txt";
+        string appData = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + " Studio/";
         string cacheDir = Environment.CurrentDirectory + "\\cache\\NBT\\";
 
         bool ps3Loaded = true;
@@ -39,10 +39,10 @@ namespace ARC_Studio.Forms
                 {
                     try
                     {
-                        if ((client.DownloadString(ARC_Studio.Form1.url + "/ARC/nbt/locCenterAvailable.txt")) == "1")
+                        if ((client.DownloadString(ARC_Studio.Form1.url + "/nbt/locCenterAvailable.txt")) == "1")
                         {
                         }
-                        else if ((client.DownloadString(ARC_Studio.Form1.url + "/ARC/nbt/locCenterAvailable.txt")) == "0")
+                        else if ((client.DownloadString(ARC_Studio.Form1.url + "/nbt/locCenterAvailable.txt")) == "0")
                         {
                             MessageBox.Show("NBT Center is currently down for maintenance, sorry for any inconveniences");
                             radioButtonMine.Checked = true;
@@ -197,7 +197,7 @@ namespace ARC_Studio.Forms
             {
                 try
                 {
-                    loadDirectory = ARC_Studio.Form1.url + "/ARC/nbt/mainList.txt";
+                    loadDirectory = ARC_Studio.Form1.url + "/nbt/mainList.txt";
                     Console.WriteLine(loadDirectory);
                     if (new WebClient().DownloadString(loadDirectory) != " ")
                     {

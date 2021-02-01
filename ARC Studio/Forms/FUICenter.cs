@@ -17,8 +17,8 @@ namespace ARC_Studio.Forms
     {
         #region variables
         string[] mods;
-        string loadDirectory = ARC_Studio.Form1.url + "/ARC/fui/ps3List.txt";
-        string appData = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ARC Studio/";
+        string loadDirectory = ARC_Studio.Form1.url + "/fui/ps3List.txt";
+        string appData = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + " Studio/";
         string cacheDir = Environment.CurrentDirectory + "\\cache\\FUI\\";
 
         bool ps3Loaded = true;
@@ -44,10 +44,10 @@ namespace ARC_Studio.Forms
                 {
                     try
                     {
-                        if ((client.DownloadString(ARC_Studio.Form1.url + "/ARC/fui/fuiCenterAvailable.txt")) == "1")
+                        if ((client.DownloadString(ARC_Studio.Form1.url + "/fui/fuiCenterAvailable.txt")) == "1")
                         {
                         }
-                        else if ((client.DownloadString(ARC_Studio.Form1.url + "/ARC/fui/fuiCenterAvailable.txt")) == "0")
+                        else if ((client.DownloadString(ARC_Studio.Form1.url + "/fui/fuiCenterAvailable.txt")) == "0")
                         {
                             MessageBox.Show("FUI Center is currently down for maintenance, sorry for any inconveniences");
                             radioButtonMine.Checked = true;
@@ -203,7 +203,7 @@ namespace ARC_Studio.Forms
             {
                 try
                 {
-                    loadDirectory = ARC_Studio.Form1.url + "/ARC/fui/ps3List.txt";
+                    loadDirectory = ARC_Studio.Form1.url + "/fui/ps3List.txt";
                     Console.WriteLine(loadDirectory);
                     if (new WebClient().DownloadString(loadDirectory) != " ")
                     {
@@ -226,7 +226,7 @@ namespace ARC_Studio.Forms
                 {
                     try
                     {
-                        loadDirectory = ARC_Studio.Form1.url + "/ARC/fui/xb360List.txt";
+                        loadDirectory = ARC_Studio.Form1.url + "/fui/xb360List.txt";
                         if (new WebClient().DownloadString(loadDirectory) != " ")
                         {
                             reload(ps3Loaded);
@@ -247,7 +247,7 @@ namespace ARC_Studio.Forms
             {
                 try
                 {
-                    loadDirectory = ARC_Studio.Form1.url + "/ARC/fui/wiiuList.txt";
+                    loadDirectory = ARC_Studio.Form1.url + "/fui/wiiuList.txt";
                     if (new WebClient().DownloadString(loadDirectory) != " ")
                     {
                         reload(ps3Loaded);

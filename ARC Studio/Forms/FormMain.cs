@@ -46,8 +46,8 @@ namespace ARC_Studio
 
         public string arcfile = "";
         public string appdata = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\ARC_Data\\Media\\";
-        public static string url = "http://pckstudio.tk";
-        string version = "1.5";
+        public static string url = "http://pckstudio.tk/studio/ARC/api";
+        string version = "1.6";
 
         string saveLocation;//Save location for pck file
         int fileCount = 0;//variable for number of minefiles
@@ -160,14 +160,13 @@ namespace ARC_Studio
             VersionLabel.Text = "Version: " + version;
             try
             {
-                new System.Net.WebClient().DownloadString("http://www.pckstudio.tk");
-                System.IO.File.WriteAllText(Environment.CurrentDirectory + "\\url.txt", "http://www.pckstudio.tk");
-                url = "http://www.pckstudio.tk";
+                new System.Net.WebClient().DownloadString("http://www.pckstudio.tk/studio/ARC/api");
+                System.IO.File.WriteAllText(Environment.CurrentDirectory + "\\url.txt", "http://www.pckstudio.tk/studio/ARC/api");
             }
             catch
             {
-                System.IO.File.WriteAllText(Environment.CurrentDirectory + "\\url.txt", "http://phoenixarc.github.io/pckstudio.tk");
-                url = "http://phoenixarc.github.io/pckstudio.tk";
+                System.IO.File.WriteAllText(Environment.CurrentDirectory + "\\url.txt", "http://phoenixarc.github.io/pckstudio.tk/studio/ARC/api");
+                url = "http://phoenixarc.github.io/pckstudio.tk/studio/ARC/api";
             }
             try
             {
@@ -866,5 +865,18 @@ namespace ARC_Studio
 
         #endregion
 
+        #region Donations
+
+        private void toPhoenixARCDeveloperToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://cash.app/$PhoenixARC");
+        }
+
+        private void toNobledezJackToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://www.paypal.me/realnobledez");
+        }
+
+        #endregion
     }
 }
