@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.IO;
@@ -47,7 +48,7 @@ namespace ARC_Studio
         public string arcfile = "";
         public string appdata = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\ARC_Data\\Media\\";
         public static string url = "http://pckstudio.tk/studio/ARC/api";
-        string version = "1.6";
+        string version = "1.8";
 
         string saveLocation;//Save location for pck file
         int fileCount = 0;//variable for number of minefiles
@@ -170,7 +171,7 @@ namespace ARC_Studio
             }
             try
             {
-                if(new System.Net.WebClient().DownloadString(url + "/ARC_Center_update.txt") != version)
+                if(float.Parse(new System.Net.WebClient().DownloadString(url + "/ARC_Center_update.txt")) > float.Parse(version))
                 {
 
                     if (MessageBox.Show("Update Avaliable\nDownload?", "Alert!", MessageBoxButtons.YesNo) == DialogResult.Yes)
@@ -267,7 +268,7 @@ namespace ARC_Studio
                             file2.ImageIndex = 1;
                             file2.SelectedImageIndex = 1;
                         }
-                        else if (Path.GetExtension(directoryFile2) == ".png")
+                        else if (Path.GetExtension(directoryFile2) == ".png" || Path.GetExtension(directoryFile2) == ".jpg")
                         {
                             file2.ImageIndex = 2;
                             file2.SelectedImageIndex = 2;
@@ -510,6 +511,7 @@ namespace ARC_Studio
                     pictureBox1.InterpolationMode = InterpolationMode.NearestNeighbor;
                     MemoryStream png = new MemoryStream(File.ReadAllBytes(EntryList.SelectedNode.Tag.ToString())); //Gets image data from minefile data
                     Image skinPicture = Image.FromStream(png); //Constructs image data into image
+                    SizeLabel.Text = skinPicture.Width + " x " + skinPicture.Height; // displays real size of the image displayed
                     pictureBox1.Image = skinPicture; //Sets image preview to image
 
 
@@ -639,59 +641,61 @@ namespace ARC_Studio
             {
                 byte[] mf = File.ReadAllBytes(EntryList.SelectedNode.Tag.ToString());
                 //Checks to see if selected minefile is a loc file
-                if (Path.GetExtension(EntryList.SelectedNode.Tag.ToString()) == ".loc")
+                switch (Path.GetExtension(EntryList.SelectedNode.Tag.ToString()))
                 {
-                    Forms.LOCEditor le = new Forms.LOCEditor(EntryList.SelectedNode.Tag.ToString());
-                    le.Show();
-                    //MessageBox.Show(".LOC Editor Coming Soon!");
-                }
+                    case (".loc"):
+                        Forms.LOCEditor le = new Forms.LOCEditor(EntryList.SelectedNode.Tag.ToString());
+                        le.Show();
+                        //MessageBox.Show(".LOC Editor Coming Soon!");
+                        break;
 
-                //Checks to see if selected minefile is a col file
-                if (Path.GetExtension(EntryList.SelectedNode.Tag.ToString()) == ".col")
-                {
-                    MessageBox.Show(".COL Editor Coming Soon!");
-                }
+                    //Checks to see if selected minefile is a col file
+                    case (".col"):
+                        MessageBox.Show(".COL Editor Coming Soon!");
+                            break;
 
 
-                //Checks to see if selected minefile is a col file
-                if (Path.GetExtension(EntryList.SelectedNode.Tag.ToString()) == ".fui")
-                {
-                    //MessageBox.Show(".FUI Editor Coming Soon!");
-                    ARC_Studio.Forms.FUIEditor fui = new Forms.FUIEditor(EntryList.SelectedNode.Tag.ToString());
-                    fui.Show();
-                }
+                    //Checks to see if selected minefile is a col file
+                    case (".fui"):
+                        //MessageBox.Show(".FUI Editor Coming Soon!");
+                        //ARC_Studio.Forms.FUIEditor fui = new Forms.FUIEditor(EntryList.SelectedNode.Tag.ToString());
+                        //fui.Show(); --Disfunctional FUI Editor!!
+                        Process procx = new Process();
+                        procx.StartInfo.FileName = Environment.CurrentDirectory + "\\FUIEditor\\FUI Studio.exe";
+                        procx.StartInfo.Arguments = EntryList.SelectedNode.Tag.ToString();
+                        procx.Start();
+                        break;
 
-                //Checks to see if selected minefile is a binka file
-                if (Path.GetExtension(EntryList.SelectedNode.Tag.ToString()) == ".binka")
-                {
-                    File.WriteAllText(Environment.CurrentDirectory + "\\BinkMan\\files.txt", EntryList.SelectedNode.Tag.ToString());
-                    SaveFileDialog sfd = new SaveFileDialog();
-                    sfd.Filter = "Waveform Audio | *.wav";
-                    if(sfd.ShowDialog() == DialogResult.OK)
-                    {
-                        System.Diagnostics.Process binkman = new System.Diagnostics.Process();
-                        binkman.StartInfo.FileName = Environment.CurrentDirectory + "\\BinkMan\\BinkMan.exe";
-                        binkman.StartInfo.WorkingDirectory = Environment.CurrentDirectory + "\\BinkMan";
-                        binkman.Start();
-                        binkman.WaitForExit();
-                        File.Copy(EntryList.SelectedNode.Tag.ToString().Replace(".binka", ".wav"), sfd.FileName, true);
-                        File.Delete(EntryList.SelectedNode.Tag.ToString().Replace(".binka", ".wav"));
-                    }
-                    else
-                    {
+                    //Checks to see if selected minefile is a binka file
+                    case (".binka"):
+                        File.WriteAllText(Environment.CurrentDirectory + "\\BinkMan\\files.txt", EntryList.SelectedNode.Tag.ToString());
+                        SaveFileDialog sfd = new SaveFileDialog();
+                        sfd.Filter = "Waveform Audio | *.wav";
+                        if (sfd.ShowDialog() == DialogResult.OK)
+                        {
+                            System.Diagnostics.Process binkman = new System.Diagnostics.Process();
+                            binkman.StartInfo.FileName = Environment.CurrentDirectory + "\\BinkMan\\BinkMan.exe";
+                            binkman.StartInfo.WorkingDirectory = Environment.CurrentDirectory + "\\BinkMan";
+                            binkman.Start();
+                            binkman.WaitForExit();
+                            File.Copy(EntryList.SelectedNode.Tag.ToString().Replace(".binka", ".wav"), sfd.FileName, true);
+                            File.Delete(EntryList.SelectedNode.Tag.ToString().Replace(".binka", ".wav"));
+                        }
+                        else
+                        {
 
-                    }
-                    //MessageBox.Show(".binka Editor Coming Soon!");
-                }
+                        }
+                            //MessageBox.Show(".binka Editor Coming Soon!");
+                        break;
 
-                //Checks to see if selected minefile is a col file
-                if (Path.GetExtension(EntryList.SelectedNode.Tag.ToString()) == "")
-                {
-                    System.Diagnostics.Process proc = new System.Diagnostics.Process();
-                    proc.StartInfo.FileName = (Environment.CurrentDirectory + "\\NBTEditor\\NBTExplorer.exe");
-                    proc.StartInfo.Arguments = EntryList.SelectedNode.Tag.ToString();
-                    proc.Start();
-                    //MessageBox.Show(".NBT Editor Coming Soon!");
+                    //Checks to see if selected minefile is a col file
+                    case (""):
+                        System.Diagnostics.Process proc = new System.Diagnostics.Process();
+                        proc.StartInfo.FileName = (Environment.CurrentDirectory + "\\NBTEditor\\NBTExplorer.exe");
+                        proc.StartInfo.Arguments = EntryList.SelectedNode.Tag.ToString();
+                        proc.Start();
+                            //MessageBox.Show(".NBT Editor Coming Soon!");
+                        break;
                 }
 
 

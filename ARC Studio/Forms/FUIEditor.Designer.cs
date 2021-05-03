@@ -40,6 +40,7 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.SizeLabel = new System.Windows.Forms.Label();
             this.pictureBox1 = new ARC_Studio.PictureBoxWithInterpolationMode();
             this.metroTabControl1.SuspendLayout();
             this.metroTabPage1.SuspendLayout();
@@ -63,6 +64,7 @@
             // 
             // metroTabPage1
             // 
+            this.metroTabPage1.Controls.Add(this.SizeLabel);
             this.metroTabPage1.Controls.Add(this.pictureBox1);
             this.metroTabPage1.Controls.Add(this.EntryList);
             this.metroTabPage1.HorizontalScrollbarBarColor = true;
@@ -147,6 +149,18 @@
             this.pictureBox2.TabIndex = 9;
             this.pictureBox2.TabStop = false;
             // 
+            // SizeLabel
+            // 
+            this.SizeLabel.AutoSize = true;
+            this.SizeLabel.BackColor = System.Drawing.Color.Transparent;
+            this.SizeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SizeLabel.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.SizeLabel.Location = new System.Drawing.Point(206, 424);
+            this.SizeLabel.Name = "SizeLabel";
+            this.SizeLabel.Size = new System.Drawing.Size(47, 20);
+            this.SizeLabel.TabIndex = 5;
+            this.SizeLabel.Text = "0 x 0";
+            // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
@@ -154,7 +168,7 @@
             this.pictureBox1.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Default;
             this.pictureBox1.Location = new System.Drawing.Point(200, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(554, 441);
+            this.pictureBox1.Size = new System.Drawing.Size(554, 421);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
@@ -174,6 +188,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FUIEditor_FormClosing);
             this.metroTabControl1.ResumeLayout(false);
             this.metroTabPage1.ResumeLayout(false);
+            this.metroTabPage1.PerformLayout();
             this.contextMenuStrip1.ResumeLayout(false);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
@@ -196,5 +211,6 @@
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem1;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Label SizeLabel;
     }
 }

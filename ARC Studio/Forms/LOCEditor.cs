@@ -150,5 +150,32 @@ namespace ARC_Studio.Forms
 
             }
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+			string lines = "";
+			string linesx = "";
+            foreach (ListViewItem line in lvMessages.Items)
+            {
+				lines += line.SubItems[1].Text + "\n";
+
+			}
+			foreach(string line in lines.Split(new[] { "\n", "\r\n"}, StringSplitOptions.None))
+            {
+				if (line.Contains("{*"))
+				{
+					foreach (string linex in line.Split(new[] { "{*" }, StringSplitOptions.None))
+					{
+						if (linex.Contains("CONTROLLER") || linex.Contains("ARMOR") || linex.Contains("SHANK") && !linex.Contains(" ")) 
+						{
+							string lon = "{*" + linex.Split(new[] { "*}" }, StringSplitOptions.None)[0] + "*}";
+							if(!linesx.Contains(lon))
+							linesx += lon + "\n";
+						}
+					}
+				}
+			}
+			System.IO.File.WriteAllText("text.txt", linesx);
+        }
     }
 }

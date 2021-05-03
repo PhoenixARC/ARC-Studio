@@ -60,6 +60,7 @@
             this.DEVELOPERLABEL = new System.Windows.Forms.Label();
             this.VersionLabel = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.SizeLabel = new System.Windows.Forms.Label();
             this.TreeMenu.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.metroTabControl1.SuspendLayout();
@@ -366,11 +367,24 @@
             this.pictureBox2.TabIndex = 8;
             this.pictureBox2.TabStop = false;
             // 
+            // SizeLabel
+            // 
+            this.SizeLabel.AutoSize = true;
+            this.SizeLabel.BackColor = System.Drawing.Color.Transparent;
+            this.SizeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SizeLabel.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.SizeLabel.Location = new System.Drawing.Point(224, 581);
+            this.SizeLabel.Name = "SizeLabel";
+            this.SizeLabel.Size = new System.Drawing.Size(47, 20);
+            this.SizeLabel.TabIndex = 9;
+            this.SizeLabel.Text = "0 x 0";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(818, 602);
+            this.Controls.Add(this.SizeLabel);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.VersionLabel);
             this.Controls.Add(this.DEVELOPERLABEL);
@@ -432,6 +446,7 @@
         private System.Windows.Forms.ToolStripMenuItem donateToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toNobledezJackToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toPhoenixARCDeveloperToolStripMenuItem;
+        private System.Windows.Forms.Label SizeLabel;
     }
 }
 

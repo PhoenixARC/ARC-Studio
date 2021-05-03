@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
@@ -21,6 +22,7 @@ namespace ARC_Studio.Forms
         string appData = System.Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/ARC_Data/";
         public ImageList icons = new ImageList();
         string openfui = "";
+        List<string> ImageNames = new List<string>();
 
         #endregion
 
@@ -36,34 +38,28 @@ namespace ARC_Studio.Forms
 
             Directory.CreateDirectory(appData + "/FUI_Data/");
             EntryList.ImageList = icons; //sets file icon image list
-            Console.WriteLine("LoadFUI");
             openfui = file;
             LoadFUI(file);
         }
 
         public void LoadFUI(string file)
         {
-            Console.WriteLine("Make Node0");
             TreeNode tn = new TreeNode();
             tn.Text = Path.GetFileName(file);
             tn.Tag = file;
             tn.ImageIndex = 1;
-            Console.WriteLine("Extract file");
             extractFUI(file);
             int imgno = 0;
             try
             {
                 foreach (string imgdat in Directory.GetFiles(appData + "/FUI_Data/"))
                 {
-                    Console.WriteLine("Make Node1");
                     TreeNode tn1 = new TreeNode();
                     tn1.Text = Path.GetFileName(imgdat);
                     tn1.Tag = imgdat;
                     tn1.ImageIndex = 0;
-                    Console.WriteLine("Add Node");
                     tn.Nodes.Add(tn1);
                     imgno++;
-                    Console.WriteLine("Add1 to imgno");
 
                 }
             }
@@ -88,8 +84,16 @@ namespace ARC_Studio.Forms
                     string fullfile = "89 50 4E 47 " + datasplit[imgno + 1];
                     File.WriteAllBytes(appData + "/FUI_Data/image" + imgno.ToString() + ".png", ARC_Studio.Workers.SplitterClass.HexStringToByteArray(fullfile.Replace(" ", "")));
                     imgno++;
+                    if(datasplit[imgno + 1].Contains("FF D8 FF E0 00 10 4A 46 49 46 00 01"))
+                    {
+                        string jpg = "FF D8 FF E0 00 10 4A 46 49 46 00 01" + datasplit[imgno + 1].Split(new[] { "FF D8 FF E0 00 10 4A 46 49 46 00 01" }, StringSplitOptions.None)[1];
+                        File.WriteAllBytes(appData + "/FUI_Data/image" + imgno.ToString() + ".jpg", ARC_Studio.Workers.SplitterClass.HexStringToByteArray(jpg.Replace(" ", "")));
+                        imgno++;
+
+                    }
 
                 }
+
             }
             catch
             {
@@ -100,13 +104,14 @@ namespace ARC_Studio.Forms
         private void EntryList_AfterSelect(object sender, TreeViewEventArgs e)
         {
 
-            if (EntryList.SelectedNode.Text.EndsWith(".png"))
+            if (EntryList.SelectedNode.Text.EndsWith(".png") || EntryList.SelectedNode.Text.EndsWith(".jpg"))
             {
                 //MessageBox.Show(EntryList.SelectedNode.Tag.ToString());
                 pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
                 pictureBox1.InterpolationMode = InterpolationMode.NearestNeighbor;
                 MemoryStream png = new MemoryStream(File.ReadAllBytes(EntryList.SelectedNode.Tag.ToString())); //Gets image data from minefile data
                 Image skinPicture = Image.FromStream(png); //Constructs image data into image
+                SizeLabel.Text = skinPicture.Width + " x " + skinPicture.Height; // displays real size of the image displayed
                 pictureBox1.Image = skinPicture; //Sets image preview to image
 
 
@@ -236,6 +241,29 @@ namespace ARC_Studio.Forms
             {
                 dir.Delete(true);
             }
+        }
+
+        public void MakeImageNameList(string file)
+        {
+            string data = BitConverter.ToString(File.ReadAllBytes(file)).Replace('-', ' ');
+            string[] datasplit = data.Split(new[] { "2E 73 77 66" }, StringSplitOptions.None);
+            foreach (string dat in datasplit)
+            {
+                foreach(string dat1 in dat.Split(new[] { "00 " }, StringSplitOptions.None))
+                {
+                    String AllowedChars = @"^[a-zA-Z0-9]+_*$";
+                    if (System.Text.Encoding.Default.GetString(Workers.SplitterClass.HexStringToByteArray(dat1.Replace(" ", ""))).Length >= 6 && Regex.IsMatch(System.Text.Encoding.Default.GetString(Workers.SplitterClass.HexStringToByteArray(dat1.Replace(" ", ""))), AllowedChars))
+                    {
+                        try
+                        {
+                            Console.WriteLine(dat1);
+                            ImageNames.Add(System.Text.Encoding.Default.GetString(Workers.SplitterClass.HexStringToByteArray(dat1.Replace(" ", ""))));
+                        }
+                        catch { }
+                    }
+                }
+            }
+            ImageNames.Reverse();
         }
     }
 }

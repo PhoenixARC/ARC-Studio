@@ -1,0 +1,20 @@
+C:\Users\phoen\source\repos\##ARC Studio\ARC Studio\bin\Release\ARC Studio.exe.config
+C:\Users\phoen\source\repos\##ARC Studio\ARC Studio\bin\Release\ARC Studio.exe
+C:\Users\phoen\source\repos\##ARC Studio\ARC Studio\bin\Release\ARC Studio.pdb
+C:\Users\phoen\source\repos\##ARC Studio\ARC Studio\bin\Release\System.Diagnostics.DiagnosticSource.xml
+C:\Users\phoen\source\repos\##ARC Studio\ARC Studio\obj\Release\ARC Studio.csprojAssemblyReference.cache
+C:\Users\phoen\source\repos\##ARC Studio\ARC Studio\obj\Release\ARC_Studio.Form1.resources
+C:\Users\phoen\source\repos\##ARC Studio\ARC Studio\obj\Release\ARC_Studio.Forms.FUICenter.resources
+C:\Users\phoen\source\repos\##ARC Studio\ARC Studio\obj\Release\ARC_Studio.Forms.FUICenterOpen.resources
+C:\Users\phoen\source\repos\##ARC Studio\ARC Studio\obj\Release\ARC_Studio.Forms.FUIEditor.resources
+C:\Users\phoen\source\repos\##ARC Studio\ARC Studio\obj\Release\ARC_Studio.Forms.LOCCenter.resources
+C:\Users\phoen\source\repos\##ARC Studio\ARC Studio\obj\Release\ARC_Studio.Forms.LOCEditor.resources
+C:\Users\phoen\source\repos\##ARC Studio\ARC Studio\obj\Release\ARC_Studio.Forms.NBTCenter.resources
+C:\Users\phoen\source\repos\##ARC Studio\ARC Studio\obj\Release\ARC_Studio.Forms.ProgramInfo.resources
+C:\Users\phoen\source\repos\##ARC Studio\ARC Studio\obj\Release\ARC_Studio.Properties.Resources.resources
+C:\Users\phoen\source\repos\##ARC Studio\ARC Studio\obj\Release\ARC Studio.csproj.GenerateResource.cache
+C:\Users\phoen\source\repos\##ARC Studio\ARC Studio\obj\Release\ARC Studio.csproj.CoreCompileInputs.cache
+C:\Users\phoen\source\repos\##ARC Studio\ARC Studio\obj\Release\ARC Studio.csproj.Fody.CopyLocal.cache
+C:\Users\phoen\source\repos\##ARC Studio\ARC Studio\obj\Release\ARC Studio.csproj.CopyComplete
+C:\Users\phoen\source\repos\##ARC Studio\ARC Studio\obj\Release\ARC Studio.exe
+C:\Users\phoen\source\repos\##ARC Studio\ARC Studio\obj\Release\ARC Studio.pdb

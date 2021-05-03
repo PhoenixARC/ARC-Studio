@@ -39,6 +39,7 @@
             this.sameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.button1 = new System.Windows.Forms.Button();
@@ -134,8 +135,9 @@
             // sameToolStripMenuItem
             // 
             this.sameToolStripMenuItem.Name = "sameToolStripMenuItem";
-            this.sameToolStripMenuItem.Size = new System.Drawing.Size(98, 22);
+            this.sameToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.sameToolStripMenuItem.Text = "Save";
+            this.sameToolStripMenuItem.Click += new System.EventHandler(this.sameToolStripMenuItem_Click);
             // 
             // panel1
             // 
@@ -150,6 +152,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.button2);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.numericUpDown1);
             this.panel2.Controls.Add(this.button1);
@@ -158,6 +161,18 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(605, 28);
             this.panel2.TabIndex = 10;
+            // 
+            // button2
+            // 
+            this.button2.Enabled = false;
+            this.button2.Location = new System.Drawing.Point(518, 1);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 20);
+            this.button2.TabIndex = 10;
+            this.button2.Text = "Dump";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Visible = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // label1
             // 
@@ -260,5 +275,6 @@
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Button button2;
     }
 }

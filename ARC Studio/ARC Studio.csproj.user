@@ -6,10 +6,10 @@
   <PropertyGroup>
     <PublishUrlHistory>publish\</PublishUrlHistory>
     <InstallUrlHistory />
-    <SupportUrlHistory />
+    <SupportUrlHistory>https://www.pckstudio.tk</SupportUrlHistory>
     <UpdateUrlHistory />
     <BootstrapperUrlHistory />
-    <ErrorReportUrlHistory />
+    <ErrorReportUrlHistory>https://www.pckstudio.tk</ErrorReportUrlHistory>
     <FallbackCulture>en-US</FallbackCulture>
     <VerifyUploadedFiles>false</VerifyUploadedFiles>
   </PropertyGroup>
