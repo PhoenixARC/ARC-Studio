@@ -1,0 +1,17 @@
+[12/04/2021] 1.0
+ - Initial release
+
+[23/04/2021] 1.1
+ - Added Font reading
+ - Added Image Viewer(double click)
+ - Added Font Viewer(double click)
+ - Added optional manual reference loading(double click)
+ - Added cascading reference loading(loads references of references)
+
+[27/04/2021] 1.2
+ - Added Elements
+ - Added Element Settings
+ - Additional debug flags
+
+[15/05/2021] 1.3
+ - Added Replacement Color-corrections
