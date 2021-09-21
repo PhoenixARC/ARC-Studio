@@ -1,11 +1,4 @@
-﻿//
-//
-//
-//
-//
-//
-//
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -48,7 +41,9 @@ namespace ARC_Studio
         public string arcfile = "";
         public string appdata = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\ARC_Data\\Media\\";
         public static string url = "http://pckstudio.tk/studio/ARC/api";
-        string version = "1.8";
+        string version = "1.9";
+
+        bool IsPortable = false;
 
         string saveLocation;//Save location for pck file
         int fileCount = 0;//variable for number of minefiles
@@ -158,6 +153,76 @@ namespace ARC_Studio
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            try // Extract Files
+            {
+                Directory.CreateDirectory(Environment.CurrentDirectory + "\\BinkMan");
+                File.WriteAllBytes(Environment.CurrentDirectory + "\\BinkMan\\BinkMan.exe", Properties.Resources.BinkMan);
+                File.WriteAllText(Environment.CurrentDirectory + "\\BinkMan\\files.txt", Properties.Resources.files);
+                Directory.CreateDirectory(Environment.CurrentDirectory + "\\FUIEditor");
+                File.WriteAllBytes(Environment.CurrentDirectory + "\\FUIEditor\\FUI Studio.exe", Properties.Resources.FUI_Studio);
+                File.WriteAllBytes(Environment.CurrentDirectory + "\\FUIEditor\\Mojangles.ttf", Properties.Resources.Mojangles);
+                File.WriteAllBytes(Environment.CurrentDirectory + "\\FUIEditor\\updater.exe", Properties.Resources.updaterFUIStudio);
+                File.WriteAllText(Environment.CurrentDirectory + "\\FUIEditor\\change.log", Properties.Resources.change);
+                Directory.CreateDirectory(Environment.CurrentDirectory + "\\NBTEditor");
+                File.WriteAllBytes(Environment.CurrentDirectory + "\\NBTEditor\\NBTExplorer.exe", Properties.Resources.NBTExplorer);
+                File.WriteAllBytes(Environment.CurrentDirectory + "\\NBTEditor\\NBTModel.dll", Properties.Resources.NBTModel);
+                File.WriteAllBytes(Environment.CurrentDirectory + "\\NBTEditor\\Substrate.dll", Properties.Resources.Substrate);
+                File.WriteAllBytes(Environment.CurrentDirectory + "\\ARCUpdater.exe", Properties.Resources.ARCUpdater);
+                if (!File.Exists(Environment.CurrentDirectory + "\\settings.ini"))
+                    File.WriteAllText(Environment.CurrentDirectory + "\\settings.ini", "**Settings** \nyou can change a variable here!\n**true / false does not accept capitals, 'True' and 'TRUE' do not work, ony 'true'\nIsPortable=" + IsPortable.ToString().Replace("T","t").Replace("F","f"));
+                //Directory.CreateDirectory(Environment.CurrentDirectory + "\\Resources");
+                //File.WriteAllBytes(Environment.CurrentDirectory + "\\Resources\\FUI_Studio", Properties.Resources.FUI_Studio);
+                //File.WriteAllBytes(Environment.CurrentDirectory + "\\Resources\\Mojangles", Properties.Resources.Mojangles);
+                //File.WriteAllBytes(Environment.CurrentDirectory + "\\Resources\\updaterFUIStudio", Properties.Resources.updaterFUIStudio);
+                //File.WriteAllText(Environment.CurrentDirectory + "\\Resources\\change", Properties.Resources.change);
+                //File.WriteAllBytes(Environment.CurrentDirectory + "\\Resources\\BinkMan", Properties.Resources.BinkMan);
+                //File.WriteAllText(Environment.CurrentDirectory + "\\Resources\\files", Properties.Resources.files);
+                //File.WriteAllBytes(Environment.CurrentDirectory + "\\Resources\\NBTExplorer", Properties.Resources.NBTExplorer);
+                //File.WriteAllBytes(Environment.CurrentDirectory + "\\Resources\\NBTModel", Properties.Resources.NBTModel);
+                //File.WriteAllBytes(Environment.CurrentDirectory + "\\Resources\\Substrate", Properties.Resources.Substrate);
+                //File.WriteAllBytes(Environment.CurrentDirectory + "\\Resources\\ARCUpdater", Properties.Resources.ARCUpdater);
+            }
+            catch { }
+            try // Checks if portable flag is checked in settings
+            {
+                string Data = File.ReadAllText(Environment.CurrentDirectory + "\\settings.ini");
+                string[] Lines = Data.Split(new[] { "\r\n", "\n" }, StringSplitOptions.None);
+                foreach(string Line in Lines)
+                {
+                    try
+                    {
+                        string Param = Line.Split('=')[0];
+                        string Value = Line.Split('=')[1];
+                        Console.WriteLine(Param + "=" + Value);
+                        switch (Param)
+                        {
+                            case ("IsPortable"):
+                                IsPortable = (Value == "true");
+                                break;
+                        }
+                    }
+                    catch { }
+
+                }
+            }
+            catch { }
+            try // Determine Location based on portable status
+            {
+                if(!IsPortable)
+                    appdata = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\ARC_Data\\Media\\";
+                else
+                    appdata = Environment.CurrentDirectory + "\\ARC_Data\\Media\\";
+            }
+            catch
+            {
+
+            }
+            try //Create Folders
+            {
+                if (!Directory.Exists(appdata))
+                    Directory.CreateDirectory(appdata);
+            }
+            catch { }
             VersionLabel.Text = "Version: " + version;
             try
             {

@@ -58,13 +58,13 @@
     <ApplicationIcon>favicon %286%29.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>ARCStudio.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>PhoenixARCPrivate.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <TargetZone>LocalIntranet</TargetZone>
@@ -249,6 +249,12 @@
     <Compile Include="Forms\FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormMainTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormMainTest.Designer.cs">
+      <DependentUpon>FormMainTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FUICenter.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -316,6 +322,9 @@
     <EmbeddedResource Include="Forms\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormMainTest.resx">
+      <DependentUpon>FormMainTest.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FUICenter.resx">
       <DependentUpon>FUICenter.cs</DependentUpon>
     </EmbeddedResource>
@@ -348,7 +357,10 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="ARCStudio.pfx" />
+    <None Include="bin\Debug\FUIEditor\change.log" />
+    <None Include="bin\Debug\FUIEditor\Mojangles.ttf" />
     <None Include="packages.config" />
+    <None Include="PhoenixARCPrivate.pfx" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -364,12 +376,30 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="bin\Debug\BinkMan\BinkMan.exe" />
+    <None Include="bin\Debug\BinkMan\files.txt" />
+    <None Include="bin\Debug\FUIEditor\FUI Studio.exe" />
+    <None Include="bin\Debug\FUIEditor\updater.exe" />
+    <None Include="bin\Debug\NBTEditor\NBTModel.dll" />
+    <None Include="bin\Debug\NBTEditor\Substrate.dll" />
+    <None Include="bin\Debug\NBTEditor\NBTExplorer.exe" />
+    <None Include="bin\Debug\ARCUpdater.exe" />
     <Content Include="favicon %286%29.ico" />
     <Content Include="MetroFramework.txt" />
+    <None Include="Resources\ARCUpdater" />
+    <None Include="Resources\BinkMan" />
+    <None Include="Resources\change" />
+    <None Include="Resources\files" />
+    <None Include="Resources\FUI_Studio" />
+    <None Include="Resources\Mojangles" />
+    <None Include="Resources\NBTExplorer" />
+    <None Include="Resources\NBTModel" />
+    <None Include="Resources\Substrate" />
     <None Include="Resources\TXT ICON.png" />
     <None Include="Resources\NBT ICON.png" />
     <None Include="Resources\COL ICON.png" />
     <None Include="Resources\FUI ICON.png" />
+    <None Include="Resources\updaterFUIStudio" />
     <None Include="Resources\ZZFolder.png" />
     <None Include="Resources\ZUnknown.png" />
     <None Include="Resources\PCK ICON.png" />

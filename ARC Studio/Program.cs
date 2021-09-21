@@ -14,12 +14,23 @@ namespace ARC_Studio
         [STAThread]
         static void Main(string[] args)
         {
+            bool UseAlt = true;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            if (args.Contains<string>("-d"))
-                Application.Run(new Form1(1));
+            if (UseAlt)
+            {
+                if (args.Contains<string>("-d"))
+                    Application.Run(new Forms.FormMainTest(1));
+                else
+                    Application.Run(new Forms.FormMainTest(0));
+            }
             else
-                Application.Run(new Form1(0));
+            {
+                if (args.Contains<string>("-d"))
+                    Application.Run(new Form1(1));
+                else
+                    Application.Run(new Form1(0));
+            }
         }
     }
 }

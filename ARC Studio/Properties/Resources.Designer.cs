@@ -61,6 +61,16 @@ namespace ARC_Studio.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] ARCUpdater {
+            get {
+                object obj = ResourceManager.GetObject("ARCUpdater", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap ARROW {
@@ -81,6 +91,41 @@ namespace ARC_Studio.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] BinkMan {
+            get {
+                object obj = ResourceManager.GetObject("BinkMan", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [12/04/2021] 1.0
+        /// - Initial release
+        ///
+        ///[23/04/2021] 1.1
+        /// - Added Font reading
+        /// - Added Image Viewer(double click)
+        /// - Added Font Viewer(double click)
+        /// - Added optional manual reference loading(double click)
+        /// - Added cascading reference loading(loads references of references)
+        ///
+        ///[27/04/2021] 1.2
+        /// - Added Elements
+        /// - Added Element Settings
+        /// - Additional debug flags
+        ///
+        ///[15/05/2021] 1.3
+        /// - Added Replacement Color-corrections.
+        /// </summary>
+        internal static string change {
+            get {
+                return ResourceManager.GetString("change", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap COL_ICON {
@@ -91,12 +136,31 @@ namespace ARC_Studio.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to C:\Users\phoen\Downloads\Downloads\rpcs3\dev_hdd0\game\NPEB01899\USRDIR\music\music\calm1.binka.
+        /// </summary>
+        internal static string files {
+            get {
+                return ResourceManager.GetString("files", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap FUI_ICON {
             get {
                 object obj = ResourceManager.GetObject("FUI_ICON", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] FUI_Studio {
+            get {
+                object obj = ResourceManager.GetObject("FUI_Studio", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
@@ -151,6 +215,16 @@ namespace ARC_Studio.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Mojangles {
+            get {
+                object obj = ResourceManager.GetObject("Mojangles", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap NBT_ICON {
@@ -171,6 +245,26 @@ namespace ARC_Studio.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] NBTExplorer {
+            get {
+                object obj = ResourceManager.GetObject("NBTExplorer", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] NBTModel {
+            get {
+                object obj = ResourceManager.GetObject("NBTModel", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap PCK_ICON {
@@ -181,12 +275,32 @@ namespace ARC_Studio.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Substrate {
+            get {
+                object obj = ResourceManager.GetObject("Substrate", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap TXT_ICON {
             get {
                 object obj = ResourceManager.GetObject("TXT_ICON", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] updaterFUIStudio {
+            get {
+                object obj = ResourceManager.GetObject("updaterFUIStudio", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         

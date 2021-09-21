@@ -163,4 +163,34 @@
   <data name="TXT_ICON" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TXT ICON.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="ARCUpdater" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ARCUpdater;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="BinkMan" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BinkMan;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="change" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\change;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="files" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\files;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="FUI_Studio" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FUI_Studio;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Mojangles" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Mojangles;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="NBTExplorer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NBTExplorer;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="NBTModel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NBTModel;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Substrate" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Substrate;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="updaterFUIStudio" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\updaterFUIStudio;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>
