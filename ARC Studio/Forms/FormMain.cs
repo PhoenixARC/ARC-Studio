@@ -40,8 +40,8 @@ namespace ARC_Studio
 
         public string arcfile = "";
         public string appdata = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\ARC_Data\\Media\\";
-        public static string url = "http://pckstudio.tk/studio/ARC/api";
-        string version = "1.9";
+        public static string url = "http://pckstudio.xyz/studio/ARC/api";
+        string version = "2.0";
 
         bool IsPortable = false;
 
@@ -153,23 +153,24 @@ namespace ARC_Studio
 
         private void Form1_Load(object sender, EventArgs e)
         {
+                string Dir = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\PhoenixApplications\\ARCStudio";
             try // Extract Files
             {
-                Directory.CreateDirectory(Environment.CurrentDirectory + "\\BinkMan");
-                File.WriteAllBytes(Environment.CurrentDirectory + "\\BinkMan\\BinkMan.exe", Properties.Resources.BinkMan);
-                File.WriteAllText(Environment.CurrentDirectory + "\\BinkMan\\files.txt", Properties.Resources.files);
-                Directory.CreateDirectory(Environment.CurrentDirectory + "\\FUIEditor");
-                File.WriteAllBytes(Environment.CurrentDirectory + "\\FUIEditor\\FUI Studio.exe", Properties.Resources.FUI_Studio);
-                File.WriteAllBytes(Environment.CurrentDirectory + "\\FUIEditor\\Mojangles.ttf", Properties.Resources.Mojangles);
-                File.WriteAllBytes(Environment.CurrentDirectory + "\\FUIEditor\\updater.exe", Properties.Resources.updaterFUIStudio);
-                File.WriteAllText(Environment.CurrentDirectory + "\\FUIEditor\\change.log", Properties.Resources.change);
-                Directory.CreateDirectory(Environment.CurrentDirectory + "\\NBTEditor");
-                File.WriteAllBytes(Environment.CurrentDirectory + "\\NBTEditor\\NBTExplorer.exe", Properties.Resources.NBTExplorer);
-                File.WriteAllBytes(Environment.CurrentDirectory + "\\NBTEditor\\NBTModel.dll", Properties.Resources.NBTModel);
-                File.WriteAllBytes(Environment.CurrentDirectory + "\\NBTEditor\\Substrate.dll", Properties.Resources.Substrate);
-                File.WriteAllBytes(Environment.CurrentDirectory + "\\ARCUpdater.exe", Properties.Resources.ARCUpdater);
-                if (!File.Exists(Environment.CurrentDirectory + "\\settings.ini"))
-                    File.WriteAllText(Environment.CurrentDirectory + "\\settings.ini", "**Settings** \nyou can change a variable here!\n**true / false does not accept capitals, 'True' and 'TRUE' do not work, ony 'true'\nIsPortable=" + IsPortable.ToString().Replace("T","t").Replace("F","f"));
+                Directory.CreateDirectory(Dir + "\\BinkMan");
+                File.WriteAllBytes(Dir + "\\BinkMan\\BinkMan.exe", Properties.Resources.BinkMan);
+                File.WriteAllText(Dir + "\\BinkMan\\files.txt", Properties.Resources.files);
+                Directory.CreateDirectory(Dir + "\\FUIEditor");
+                File.WriteAllBytes(Dir + "\\FUIEditor\\FUI Studio.exe", Properties.Resources.FUI_Studio);
+                File.WriteAllBytes(Dir + "\\FUIEditor\\Mojangles.ttf", Properties.Resources.Mojangles);
+                File.WriteAllBytes(Dir + "\\FUIEditor\\updater.exe", Properties.Resources.updaterFUIStudio);
+                File.WriteAllText(Dir + "\\FUIEditor\\change.log", Properties.Resources.change);
+                Directory.CreateDirectory(Dir + "\\NBTEditor");
+                File.WriteAllBytes(Dir + "\\NBTEditor\\NBTExplorer.exe", Properties.Resources.NBTExplorer);
+                File.WriteAllBytes(Dir + "\\NBTEditor\\NBTModel.dll", Properties.Resources.NBTModel);
+                File.WriteAllBytes(Dir + "\\NBTEditor\\Substrate.dll", Properties.Resources.Substrate);
+                File.WriteAllBytes(Dir + "\\ARCUpdater.exe", Properties.Resources.ARCUpdater);
+                if (!File.Exists(Dir + "\\settings.ini"))
+                    File.WriteAllText(Dir + "\\settings.ini", "**Settings** \nyou can change a variable here!\n**true / false does not accept capitals, 'True' and 'TRUE' do not work, ony 'true'\nIsPortable=" + IsPortable.ToString().Replace("T","t").Replace("F","f"));
                 //Directory.CreateDirectory(Environment.CurrentDirectory + "\\Resources");
                 //File.WriteAllBytes(Environment.CurrentDirectory + "\\Resources\\FUI_Studio", Properties.Resources.FUI_Studio);
                 //File.WriteAllBytes(Environment.CurrentDirectory + "\\Resources\\Mojangles", Properties.Resources.Mojangles);
@@ -185,7 +186,7 @@ namespace ARC_Studio
             catch { }
             try // Checks if portable flag is checked in settings
             {
-                string Data = File.ReadAllText(Environment.CurrentDirectory + "\\settings.ini");
+                string Data = File.ReadAllText(Dir + "\\settings.ini");
                 string[] Lines = Data.Split(new[] { "\r\n", "\n" }, StringSplitOptions.None);
                 foreach(string Line in Lines)
                 {
@@ -209,7 +210,7 @@ namespace ARC_Studio
             try // Determine Location based on portable status
             {
                 if(!IsPortable)
-                    appdata = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\ARC_Data\\Media\\";
+                    appdata = Dir + "\\ARC_Data\\Media\\";
                 else
                     appdata = Environment.CurrentDirectory + "\\ARC_Data\\Media\\";
             }
@@ -226,28 +227,17 @@ namespace ARC_Studio
             VersionLabel.Text = "Version: " + version;
             try
             {
-                new System.Net.WebClient().DownloadString("http://www.pckstudio.tk/studio/ARC/api");
-                System.IO.File.WriteAllText(Environment.CurrentDirectory + "\\url.txt", "http://www.pckstudio.tk/studio/ARC/api");
+                new System.Net.WebClient().DownloadString("http://www.pckstudio.xyz/studio/ARC/api");
+                System.IO.File.WriteAllText(Dir + "\\url.txt", "http://www.pckstudio.xyz/studio/ARC/api");
             }
             catch
             {
-                System.IO.File.WriteAllText(Environment.CurrentDirectory + "\\url.txt", "http://phoenixarc.github.io/pckstudio.tk/studio/ARC/api");
-                url = "http://phoenixarc.github.io/pckstudio.tk/studio/ARC/api";
+                System.IO.File.WriteAllText(Dir + "\\url.txt", "http://phoenixarc.ddns.net/studio/ARC/api");
+                url = "http://phoenixarc.ddns.net/studio/ARC/api";
             }
             try
             {
-                if(float.Parse(new System.Net.WebClient().DownloadString(url + "/ARC_Center_update.txt")) > float.Parse(version))
-                {
-
-                    if (MessageBox.Show("Update Avaliable\nDownload?", "Alert!", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                    {
-                        System.Diagnostics.Process.Start(Environment.CurrentDirectory + "\\ARCUpdater.exe");
-                    }
-                }
-                else
-                {
-
-                }
+                Classes.Network.CheckUpdate();
             }
             catch
             {
@@ -667,14 +657,10 @@ namespace ARC_Studio
             catch(Exception exep)
             {
                 string errormsg = DateTime.Today.Day + "-" + DateTime.Today.Month + "-" + DateTime.Today.Year + "::" + DateTime.Now.Hour + "_" + DateTime.Now.Minute + " -- " + exep.Message.ToString() + "\n\n" + exep.StackTrace.ToString();
-                System.IO.Directory.CreateDirectory(Environment.CurrentDirectory + "\\LOGS\\");
-                System.IO.File.AppendAllText(Environment.CurrentDirectory + "\\LOGS\\logFile-" + DateTime.Today.Day + "-" + DateTime.Today.Month + "-" + DateTime.Today.Year + ".log", errormsg + "\n\n===============NEWLOG===============n");
+                System.IO.Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\PhoenixApplications\\ARCStudio" + "\\LOGS\\");
+                System.IO.File.AppendAllText(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\PhoenixApplications\\ARCStudio" + "\\LOGS\\logFile-" + DateTime.Today.Day + "-" + DateTime.Today.Month + "-" + DateTime.Today.Year + ".log", errormsg + "\n\n===============NEWLOG===============n");
 
 
-                if (MessageBox.Show("Update Avaliable\nDownload?", "Error!", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
-                    System.Diagnostics.Process.Start(Environment.CurrentDirectory + "\\ARCUpdater.exe");
-                }
             }
         }
         #endregion
@@ -726,21 +712,21 @@ namespace ARC_Studio
                         //ARC_Studio.Forms.FUIEditor fui = new Forms.FUIEditor(EntryList.SelectedNode.Tag.ToString());
                         //fui.Show(); --Disfunctional FUI Editor!!
                         Process procx = new Process();
-                        procx.StartInfo.FileName = Environment.CurrentDirectory + "\\FUIEditor\\FUI Studio.exe";
+                        procx.StartInfo.FileName = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\PhoenixApplications\\ARCStudio" + "\\FUIEditor\\FUI Studio.exe";
                         procx.StartInfo.Arguments = EntryList.SelectedNode.Tag.ToString();
                         procx.Start();
                         break;
 
                     //Checks to see if selected minefile is a binka file
                     case (".binka"):
-                        File.WriteAllText(Environment.CurrentDirectory + "\\BinkMan\\files.txt", EntryList.SelectedNode.Tag.ToString());
+                        File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\PhoenixApplications\\ARCStudio" + "\\BinkMan\\files.txt", EntryList.SelectedNode.Tag.ToString());
                         SaveFileDialog sfd = new SaveFileDialog();
                         sfd.Filter = "Waveform Audio | *.wav";
                         if (sfd.ShowDialog() == DialogResult.OK)
                         {
                             System.Diagnostics.Process binkman = new System.Diagnostics.Process();
-                            binkman.StartInfo.FileName = Environment.CurrentDirectory + "\\BinkMan\\BinkMan.exe";
-                            binkman.StartInfo.WorkingDirectory = Environment.CurrentDirectory + "\\BinkMan";
+                            binkman.StartInfo.FileName = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\PhoenixApplications\\ARCStudio" + "\\BinkMan\\BinkMan.exe";
+                            binkman.StartInfo.WorkingDirectory = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\PhoenixApplications\\ARCStudio" + "\\BinkMan";
                             binkman.Start();
                             binkman.WaitForExit();
                             File.Copy(EntryList.SelectedNode.Tag.ToString().Replace(".binka", ".wav"), sfd.FileName, true);
@@ -756,7 +742,7 @@ namespace ARC_Studio
                     //Checks to see if selected minefile is a col file
                     case (""):
                         System.Diagnostics.Process proc = new System.Diagnostics.Process();
-                        proc.StartInfo.FileName = (Environment.CurrentDirectory + "\\NBTEditor\\NBTExplorer.exe");
+                        proc.StartInfo.FileName = (Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\PhoenixApplications\\ARCStudio" + "\\NBTEditor\\NBTExplorer.exe");
                         proc.StartInfo.Arguments = EntryList.SelectedNode.Tag.ToString();
                         proc.Start();
                             //MessageBox.Show(".NBT Editor Coming Soon!");
@@ -829,8 +815,8 @@ namespace ARC_Studio
                     if (sfd.Filter == "Waveform Audio | *.wav")
                     {
                         System.Diagnostics.Process binkman = new System.Diagnostics.Process();
-                        binkman.StartInfo.FileName = Environment.CurrentDirectory + "\\BinkMan\\BinkMan.exe";
-                        binkman.StartInfo.WorkingDirectory = Environment.CurrentDirectory + "\\BinkMan";
+                        binkman.StartInfo.FileName = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\PhoenixApplications\\ARCStudio" + "\\BinkMan\\BinkMan.exe";
+                        binkman.StartInfo.WorkingDirectory = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\PhoenixApplications\\ARCStudio" + "\\BinkMan";
                         binkman.Start();
                         binkman.WaitForExit();
                         File.Copy(EntryList.SelectedNode.Tag.ToString().Replace(".binka", ".wav"), sfd.FileName, true);
@@ -900,8 +886,8 @@ namespace ARC_Studio
                     if (sfd.Filter == "Waveform Audio | *.wav")
                     {
                         System.Diagnostics.Process binkman = new System.Diagnostics.Process();
-                        binkman.StartInfo.FileName = Environment.CurrentDirectory + "\\BinkMan\\BinkMan.exe";
-                        binkman.StartInfo.WorkingDirectory = Environment.CurrentDirectory + "\\BinkMan";
+                        binkman.StartInfo.FileName = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\PhoenixApplications\\ARCStudio" + "\\BinkMan\\BinkMan.exe";
+                        binkman.StartInfo.WorkingDirectory = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\PhoenixApplications\\ARCStudio" + "\\BinkMan";
                         binkman.Start();
                         binkman.WaitForExit();
                         File.Copy(sfd.FileName, EntryList.SelectedNode.Tag.ToString().Replace(".wav", ".binka"), true);

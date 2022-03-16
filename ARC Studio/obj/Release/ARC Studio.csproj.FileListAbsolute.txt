@@ -19,3 +19,4 @@ C:\Users\phoen\source\repos\##ARC Studio\ARC Studio\obj\Release\ARC Studio.exe
 C:\Users\phoen\source\repos\##ARC Studio\ARC Studio\obj\Release\ARC Studio.pdb
 C:\Users\phoen\source\repos\##ARC Studio\ARC Studio\obj\Release\ARC Studio.csproj.AssemblyReference.cache
 C:\Users\phoen\source\repos\##ARC Studio\ARC Studio\obj\Release\ARC_Studio.Forms.FormMainTest.resources
+C:\Users\phoen\source\repos\##ARC Studio\ARC Studio\obj\Release\ARC_Studio.Forms.FakeProgressBar.resources

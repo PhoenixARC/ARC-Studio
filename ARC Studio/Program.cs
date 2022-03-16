@@ -14,7 +14,7 @@ namespace ARC_Studio
         [STAThread]
         static void Main(string[] args)
         {
-            bool UseAlt = true;
+            bool UseAlt = false ;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             if (UseAlt)

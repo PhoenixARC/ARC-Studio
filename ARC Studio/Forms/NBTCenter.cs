@@ -24,9 +24,10 @@ namespace ARC_Studio.Forms
         }
 
         string[] mods;
+        static string Dir = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\PhoenixApplications\\ARCStudio";
         string loadDirectory = ARC_Studio.Form1.url + "/nbt/mainList.txt";
         string appData = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + " Studio/";
-        string cacheDir = Environment.CurrentDirectory + "\\cache\\NBT\\";
+        string cacheDir = Dir + "\\cache\\NBT\\";
 
         bool ps3Loaded = true;
 

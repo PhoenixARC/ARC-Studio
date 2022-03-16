@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="*"
+           Name="ARC Studio"
+           Language="1033"
+           Version="1.0.0.0"
+           Manufacturer="PhoenixARC"
+           UpgradeCode="ab444e2a-b928-459b-b6a8-f46931f05ecf">
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <MediaTemplate EmbedCab="yes" />
+
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLDIR"/>
+    <UI>
+      <UIRef Id="WixUI_InstallDir" />
+
+      <Publish Dialog="ExitDialog"
+               Control="Finish"
+               Event="DoAction"
+               Value="CA.LaunchApplication">WIXUI_EXITDIALOGOPTIONALCHECKBOX = 1 and NOT Installed</Publish>
+    </UI>
+
+    <WixVariable Id="WixUILicenseRtf" Value="License.rtf" />
+
+    <WixVariable Id="WixUIBannerBmp" Value="Bitmaps/Banner.png" />
+    <WixVariable Id="WixUIDialogBmp" Value="Bitmaps/Dialog.png" />
+
+    <Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT" Value="Launch ARC Studio" />
+    <Property Id="WixShellExecTarget" Value="[#ARC Studio.exe]" />
+    <CustomAction Id="CA.LaunchApplication" BinaryKey="WixCA" DllEntry="WixShellExec" Impersonate="yes" />
+
+
+
+    <Icon Id="I.MainIcon" SourceFile="Icon.ico" />
+    <Property Id="ARPPRODUCTICON" Value="I.MainIcon" />
+
+    <Feature Id="F.MainApplication" Title="ARC Studio" Level="1">
+      <ComponentGroupRef Id="CG.StartMenu" />
+      <ComponentGroupRef Id="CG.ProductComponents" />
+    </Feature>
+  </Product>
+
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="D.StartFolder" Name="ARC Studio" />
+      </Directory>
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLDIR" Name="ARC Studio" />
+      </Directory>
+    </Directory>
+
+    <ComponentGroup Id="CG.StartMenu" Directory="D.StartFolder">
+      <Component Id="C.NBTEShortcut" Guid="*">
+        <Shortcut Id="S.NBTEShortcut"
+                  Name="ARC Studio"
+                  Target="[INSTALLDIR]ARC Studio.exe"
+                  WorkingDirectory="INSTALLDIR" />
+        <RemoveFolder Id="RF.StartFolder" On="uninstall" />
+        <RegistryValue Id="RV.NBTEShortcut" Root="HKCU" Key="Software\ARCStudio" Name="installed" Type="integer" Value="1" KeyPath="yes" />
+      </Component>
+      <Component Id="C.Uninstall" Guid="*">
+        <Shortcut Id="S.Uninstall"
+                  Name="Uninstall ARC Studio"
+                  Target="[SystemFolder]msiexec.exe"
+                  Arguments="/x [ProductCode]"
+                  Description="Uninstalls the ARC Studio Application" />
+        <RemoveFolder Id="RF.Uninstall" On ="uninstall" />
+        <RegistryValue Id="RV.Uninstall" Root="HKCU" Key="Software\ARCStudio" Name="uninstall" Type="integer" Value="1" KeyPath="yes" />
+      </Component>
+    </ComponentGroup>
+
+    <ComponentGroup Id="CG.ProductComponents" Directory="INSTALLDIR">
+      <Component Id="C.ARCStudio" Guid="*">
+        <File Source="../ARC Studio/bin/Release/ARC Studio.exe" KeyPath="yes" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+</Wix>

@@ -9,10 +9,10 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("ARC Studio")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("PhoenixARC")]
 [assembly: AssemblyProduct("ARC Studio")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyTrademark("ARC Studio")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible

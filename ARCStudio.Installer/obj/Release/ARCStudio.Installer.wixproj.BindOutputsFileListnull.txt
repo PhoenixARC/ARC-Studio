@@ -1,0 +1,2 @@
+C:\Users\phoen\source\repos\##ARC Studio\ARCStudio.Installer\bin\Release\ARCStudio-Setup.msi
+C:\Users\phoen\source\repos\##ARC Studio\ARCStudio.Installer\bin\Release\ARCStudio-Setup.wixpdb

@@ -7,6 +7,8 @@ using System.Text;
 using MetroFramework.Forms;
 using System.Windows.Forms;
 using ARC_Studio.Workers;
+using LanguageWorker;
+using LanguageWorker.model;
 
 namespace ARC_Studio.Forms
 {

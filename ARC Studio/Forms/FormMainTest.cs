@@ -51,7 +51,7 @@ namespace ARC_Studio.Forms
 
         public string arcfile = "";
         public string appdata = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\ARC_Data\\Media\\";
-        public static string url = "http://pckstudio.tk/studio/ARC/api";
+        public static string url = "http://pckstudio.xyz/studio/ARC/api";
         string version = "1.9";
 
         bool IsPortable = false;

@@ -243,6 +243,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\FakeProgressBar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FakeProgressBar.Designer.cs">
+      <DependentUpon>FakeProgressBar.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -313,12 +319,19 @@
     <Compile Include="Workers\Filebase.cs" />
     <Compile Include="Workers\FileData.cs" />
     <Compile Include="Workers\FileOutput.cs" />
-    <Compile Include="Workers\LOC.cs">
-      <Generator>ARC</Generator>
-      <CustomToolNamespace>ARC2</CustomToolNamespace>
-    </Compile>
+    <Compile Include="Workers\LanguageWorker\LanguageBuilder.cs" />
+    <Compile Include="Workers\LanguageWorker\LanguagesParser.cs" />
+    <Compile Include="Workers\LanguageWorker\model\IndexEntry.cs" />
+    <Compile Include="Workers\LanguageWorker\model\LanguageEntry.cs" />
+    <Compile Include="Workers\LanguageWorker\model\LanguagesContainer.cs" />
+    <Compile Include="Workers\LanguageWorker\model\MessageEntry.cs" />
+    <Compile Include="Workers\Network.cs" />
     <Compile Include="Workers\PCK.cs" />
     <Compile Include="Workers\SplitterClass.cs" />
+    <Compile Include="Workers\Update.cs" />
+    <EmbeddedResource Include="Forms\FakeProgressBar.resx">
+      <DependentUpon>FakeProgressBar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>

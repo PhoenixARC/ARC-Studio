@@ -1,0 +1,6 @@
+C:\Users\phoen\source\repos\##ARC Studio\ARCStudio.Installer\bin\Release\ARCStudio-Setup.msi
+C:\Users\phoen\source\repos\##ARC Studio\ARCStudio.Installer\bin\Release\ARCStudio-Setup.wixpdb
+obj\Release\Product.wixobj
+obj\Release\ARCStudio.Installer.wixproj.BindContentsFileListnull.txt
+obj\Release\ARCStudio.Installer.wixproj.BindOutputsFileListnull.txt
+obj\Release\ARCStudio.Installer.wixproj.BindBuiltOutputsFileListnull.txt

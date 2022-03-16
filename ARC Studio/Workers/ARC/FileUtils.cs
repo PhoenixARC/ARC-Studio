@@ -27,7 +27,7 @@ namespace ARC_Studio.Workers.ARC
 		{
 			global::System.Windows.Forms.OpenFileDialog openFileDialog = new global::System.Windows.Forms.OpenFileDialog();
 			string result = null;
-			string_2 = global::ARC_Studio.Workers.ARC.FileUtils.smethod_2(string_2);
+			string_2 = global::ARC_Studio.Workers.ARC.FileUtils.sGetInt16(string_2);
 			openFileDialog.DefaultExt = string_0;
 			openFileDialog.Filter = string_1;
 			openFileDialog.InitialDirectory = string_2;
@@ -40,7 +40,7 @@ namespace ARC_Studio.Workers.ARC
 			return result;
 		}
 
-		private static string smethod_2(string string_0)
+		private static string sGetInt16(string string_0)
 		{
 			try
 			{
@@ -173,7 +173,7 @@ namespace ARC_Studio.Workers.ARC
 			}
 		}
 
-		internal static void smethod_9(string string_0)
+		internal static void sWriteShortToStream(string string_0)
 		{
 			if (!global::System.IO.Directory.Exists(string_0))
 			{
@@ -196,7 +196,7 @@ namespace ARC_Studio.Workers.ARC
 			return global::System.IO.Directory.Exists(folderPath);
 		}
 
-		internal static void smethod_10(string string_0)
+		internal static void sWriteIntToStream(string string_0)
 		{
 			if (global::System.IO.File.Exists(string_0))
 			{
@@ -204,7 +204,7 @@ namespace ARC_Studio.Workers.ARC
 			}
 		}
 
-		internal static void smethod_11(string string_0, string string_1)
+		internal static void sWriteUIntToStream(string string_0, string string_1)
 		{
 			if (global::System.IO.File.Exists(string_0))
 			{
@@ -212,13 +212,13 @@ namespace ARC_Studio.Workers.ARC
 			}
 		}
 
-		internal static void smethod_12(string string_0, string string_1)
+		internal static void sWriteStringToStream(string string_0, string string_1)
 		{
 			if (global::System.IO.File.Exists(string_0))
 			{
 				if (global::System.IO.File.Exists(string_1))
 				{
-					global::ARC_Studio.Workers.ARC.FileUtils.smethod_10(string_1);
+					global::ARC_Studio.Workers.ARC.FileUtils.sWriteIntToStream(string_1);
 				}
 				global::System.IO.File.Copy(string_0, string_1);
 			}

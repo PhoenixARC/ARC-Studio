@@ -17,9 +17,10 @@ namespace ARC_Studio.Forms
     {
         #region variables
         string[] mods;
+        static string Dir = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\PhoenixApplications\\ARCStudio";
         string loadDirectory = ARC_Studio.Form1.url + "/fui/ps3List.txt";
         string appData = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + " Studio/";
-        string cacheDir = Environment.CurrentDirectory + "\\cache\\FUI\\";
+        string cacheDir = Dir + "\\cache\\FUI\\";
 
         bool ps3Loaded = true;
         bool xb360Loaded = true;
@@ -328,7 +329,7 @@ namespace ARC_Studio.Forms
 
         private void buttonSubmit_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("mailto:felix.millerarc@gmail.com?subject=FUI%20Submission&body=Name%3A%0ACreator%3A%0AOriginal%20FUI%20Name%3A");
+            System.Diagnostics.Process.Start("mailto:phoenixarc.canarynotifs@gmail.com?subject=FUI%20Submission&body=Name%3A%0ACreator%3A%0AOriginal%20FUI%20Name%3A");
         }
 
         private void FUICenter_Load(object sender, EventArgs e)

@@ -255,9 +255,9 @@
 		}
 
 		#endregion
-		private ARC_Studio.Workers.LanguagesContainer languagesContainer_0;
+		private LanguageWorker.model.LanguagesContainer languagesContainer_0;
 
-		private ARC_Studio.Workers.MessageEntry messageEntry_0;
+		private LanguageWorker.model.MessageEntry messageEntry_0;
 
 		private global::System.ComponentModel.IContainer icontainer_0;
         private System.Windows.Forms.ListView duohnRabql;
